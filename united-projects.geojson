@@ -1,4 +1,1 @@
-{
-  "type": "FeatureCollection",
-  "features": []
-}
+{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-114.459909,51.161989]},"properties":{"Project ID":"F1489","Project Name":"greenland","Status":"DP placed&-114.354797&-114.354797","Description":"roofing","Updated At":""}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-114.4721913,51.1589097]},"properties":{"Project ID":"F1598","Project Name":"iceland","Status":"Estimating&&","Description":"gypcrete","Updated At":""}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-114.4753415,51.160452]},"properties":{"Project ID":"F1614","Project Name":"monowheel","Status":"Won&&","Description":"cladding","Updated At":""}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-114.040869,51.024639]},"properties":{"Project ID":"F000","Project Name":"base","Status":"Bid submitted","Description":"","Updated At":""}}]}
