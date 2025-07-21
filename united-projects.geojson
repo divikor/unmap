@@ -153,6 +153,23 @@
         "Description": "roofing",
         "Updated At": ""
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.062744,
+          51.032285
+        ]
+      },
+      "properties": {
+        "Project ID": "k78",
+        "Project Name": "greenbowl",
+        "Status": "Bid submitted",
+        "Description": "",
+        "Updated At": ""
+      }
     }
   ]
 }
