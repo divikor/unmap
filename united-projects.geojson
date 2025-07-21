@@ -116,7 +116,24 @@
         "Project ID": "f157",
         "Project Name": "Annex Ale Project",
         "Status": "Estimating",
-        "Description": "",
+        "Description": "roofing",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.062999,
+          51.012628
+        ]
+      },
+      "properties": {
+        "Project ID": "f434",
+        "Project Name": "The Establishment Brewing Company",
+        "Status": "Won",
+        "Description": "cladding",
         "Updated At": ""
       }
     }
