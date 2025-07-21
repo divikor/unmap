@@ -136,6 +136,23 @@
         "Description": "cladding",
         "Updated At": ""
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.0717774,
+          51.0307509
+        ]
+      },
+      "properties": {
+        "Project ID": "t45",
+        "Project Name": "South Block Barbecue & Brewing Co.",
+        "Status": "DP placed",
+        "Description": "roofing",
+        "Updated At": ""
+      }
     }
   ]
 }
