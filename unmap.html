@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>United Projects Map</title>
+    <meta charset="utf-8" />
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 10,
+          center: { lat: 51.0447, lng: -114.0719 }, // Центр Calgary
+        });
+
+        map.data.loadGeoJson(
+          "https://raw.githubusercontent.com/divikor/unmap/main/united-projects.geojson"
+        );
+
+        map.data.setStyle((feature) => {
+          const status = feature.getProperty("Status");
+          let color = "gray";
+          if (status === "Won") color = "green";
+          else if (status === "Lose") color = "red";
+          else if (status === "Estimating") color = "orange";
+          else if (status === "DP placed") color = "blue";
+          else if (status === "Bid submitted") color = "purple";
+
+          return {
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 6,
+              fillColor: color,
+              fillOpacity: 1,
+              strokeWeight: 1,
+              strokeColor: "white",
+            },
+          };
+        });
+
+        map.data.addListener("click", (event) => {
+          const props = event.feature.getProperty("Project Name");
+          const status = event.feature.getProperty("Status");
+          const description = event.feature.getProperty("Description");
+          const info = new google.maps.InfoWindow({
+            content: `<strong>${props}</strong><br>Status: ${status}<br>${description}`,
+            position: event.latLng,
+          });
+          info.open(map);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfX45EKkc_I2jIGHH67iv4H-jOkbgIfNA&callback=initMap"
+      async
+      defer
+    ></script>
+  </body>
+</html>
