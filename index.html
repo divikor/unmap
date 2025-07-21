@@ -16,8 +16,10 @@
     <script>
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
-        center: { lat: 51.0447, lng: -114.0719 }, // Calgary
+        center: { lat: 51.0447, lng: -114.0719 },
       });
+
+      const infoWindow = new google.maps.InfoWindow();
 
       map.data.loadGeoJson("https://raw.githubusercontent.com/divikor/unmap/main/united-projects.geojson");
 
@@ -27,6 +29,8 @@
         if (status === "Won") color = "green";
         else if (status === "Lose") color = "red";
         else if (status === "Estimating") color = "orange";
+        else if (status === "DP placed") color = "purple";
+        else if (status === "Bid submitted") color = "gray";
 
         return {
           icon: {
@@ -42,10 +46,18 @@
 
       map.data.addListener("click", (event) => {
         const props = event.feature.getProperties();
-        const content = Object.entries(props)
-          .map(([key, val]) => `<b>${key}</b>: ${val}`)
-          .join("<br>");
-        new google.maps.InfoWindow({ content, position: event.latLng }).open(map);
+        const content = `
+          <div style="min-width:200px">
+            <h3>${props["Project Name"]}</h3>
+            <p><b>ID:</b> ${props["Project ID"]}</p>
+            <p><b>Status:</b> ${props["Status"]}</p>
+            <p><b>Description:</b> ${props["Description"]}</p>
+            <p><b>Updated:</b> ${props["Updated At"] || "n/a"}</p>
+          </div>
+        `;
+        infoWindow.setContent(content);
+        infoWindow.setPosition(event.latLng);
+        infoWindow.open(map);
       });
     </script>
   </body>
