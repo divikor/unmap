@@ -167,7 +167,24 @@
         "Project ID": "k78",
         "Project Name": "greenbowl",
         "Status": "Bid submitted",
-        "Description": "",
+        "Description": "cladding",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.0551572,
+          51.0271809
+        ]
+      },
+      "properties": {
+        "Project ID": "o98",
+        "Project Name": "earth",
+        "Status": "Lose",
+        "Description": "service",
         "Updated At": ""
       }
     }
