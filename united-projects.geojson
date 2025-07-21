@@ -102,6 +102,23 @@
         "Description": "service",
         "Updated At": ""
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.062999,
+          51.012628
+        ]
+      },
+      "properties": {
+        "Project ID": "f157",
+        "Project Name": "Annex Ale Project",
+        "Status": "Estimating",
+        "Description": "",
+        "Updated At": ""
+      }
     }
   ]
 }
