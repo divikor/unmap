@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>United Projects Map</title>
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfX45EKkc_I2jIGHH67iv4H-jOkbgIfNA"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: { lat: 51.0447, lng: -114.0719 }, // Calgary
+      });
+
+      map.data.loadGeoJson("https://raw.githubusercontent.com/divikor/unmap/main/united-projects.geojson");
+
+      map.data.setStyle((feature) => {
+        const status = feature.getProperty("Status");
+        let color = "blue";
+        if (status === "Won") color = "green";
+        else if (status === "Lose") color = "red";
+        else if (status === "Estimating") color = "orange";
+
+        return {
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 6,
+            fillColor: color,
+            fillOpacity: 0.9,
+            strokeColor: "white",
+            strokeWeight: 1,
+          },
+        };
+      });
+
+      map.data.addListener("click", (event) => {
+        const props = event.feature.getProperties();
+        const content = Object.entries(props)
+          .map(([key, val]) => `<b>${key}</b>: ${val}`)
+          .join("<br>");
+        new google.maps.InfoWindow({ content, position: event.latLng }).open(map);
+      });
+    </script>
+  </body>
+</html>
