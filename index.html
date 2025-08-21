@@ -1,64 +1,58 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>United Projects Map</title>
-    <style>
-      #map {
-        height: 100vh;
-        width: 100%;
-      }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfX45EKkc_I2jIGHH67iv4H-jOkbgIfNA"></script>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 10,
-        center: { lat: 51.0447, lng: -114.0719 },
-      });
+<head>
+  <title>United Projects Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html, body, #map { height: 100%; margin: 0; padding: 0; }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    const map = L.map('map').setView([51.0447, -114.0719], 10);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-      const infoWindow = new google.maps.InfoWindow();
-
-      map.data.loadGeoJson("https://raw.githubusercontent.com/divikor/unmap/main/united-projects.geojson");
-
-      map.data.setStyle((feature) => {
-        const status = feature.getProperty("Status");
-        let color = "blue";
-        if (status === "Won") color = "green";
-        else if (status === "Lose") color = "red";
-        else if (status === "Estimating") color = "orange";
-        else if (status === "DP placed") color = "purple";
-        else if (status === "Bid submitted") color = "gray";
-
-        return {
-          icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 6,
-            fillColor: color,
-            fillOpacity: 0.9,
-            strokeColor: "white",
-            strokeWeight: 1,
-          },
+    fetch('united-projects.geojson')
+      .then(response => response.json())
+      .then(data => {
+        const statusColors = {
+          "Won": "green",
+          "Lose": "red",
+          "Estimating": "orange",
+          "Bid submitted": "blue",
+          "DP placed": "pink",
+          "": "gray"
         };
-      });
 
-      map.data.addListener("click", (event) => {
-        const props = event.feature.getProperties();
-        const content = `
-          <div style="min-width:200px">
-            <h3>${props["Project Name"]}</h3>
-            <p><b>ID:</b> ${props["Project ID"]}</p>
-            <p><b>Status:</b> ${props["Status"]}</p>
-            <p><b>Description:</b> ${props["Description"]}</p>
-            <p><b>Updated:</b> ${props["Updated At"] || "n/a"}</p>
-          </div>
-        `;
-        infoWindow.setContent(content);
-        infoWindow.setPosition(event.latLng);
-        infoWindow.open(map);
+        L.geoJSON(data, {
+          pointToLayer: function (feature, latlng) {
+            const color = statusColors[feature.properties.Status] || "black";
+            return L.circleMarker(latlng, {
+              radius: 6,
+              fillColor: color,
+              color: "#000",
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.8
+            });
+          },
+          onEachFeature: function (feature, layer) {
+            const p = feature.properties;
+            layer.bindPopup(
+              `<b>${p["Project Name"]}</b><br/>
+               ID: ${p["Project ID"]}<br/>
+               Status: ${p["Status"]}<br/>
+               Description: ${p["Description"]}<br/>
+               Updated: ${p["Updated At"]}`
+            );
+          }
+        }).addTo(map);
       });
-    </script>
-  </body>
+  </script>
+</body>
 </html>
