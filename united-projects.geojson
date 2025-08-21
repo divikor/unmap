@@ -15,7 +15,9 @@
         "Project Name": "greenland",
         "Status": "Lose",
         "Description": "roofing",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#D32F2F",
+        "marker-symbol": "building"
       }
     },
     {
@@ -32,7 +34,9 @@
         "Project Name": "iceland",
         "Status": "Won",
         "Description": "gypcrete",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#4CAF50",
+        "marker-symbol": "building"
       }
     },
     {
@@ -49,7 +53,9 @@
         "Project Name": "monowheel",
         "Status": "DP placed",
         "Description": "cladding",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#E57373",
+        "marker-symbol": "building"
       }
     },
     {
@@ -66,7 +72,9 @@
         "Project Name": "base",
         "Status": "Bid submitted",
         "Description": "traffic coating",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#1976D2",
+        "marker-symbol": "building"
       }
     },
     {
@@ -83,7 +91,9 @@
         "Project Name": "Cabin",
         "Status": "Won",
         "Description": "waterproofing",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#4CAF50",
+        "marker-symbol": "building"
       }
     },
     {
@@ -100,7 +110,9 @@
         "Project Name": "Peak",
         "Status": "Estimating",
         "Description": "service",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#FBC02D",
+        "marker-symbol": "building"
       }
     },
     {
@@ -117,7 +129,9 @@
         "Project Name": "Annex Ale Project",
         "Status": "Estimating",
         "Description": "roofing",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#FBC02D",
+        "marker-symbol": "building"
       }
     },
     {
@@ -134,7 +148,9 @@
         "Project Name": "The Establishment Brewing Company",
         "Status": "Won",
         "Description": "cladding",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#4CAF50",
+        "marker-symbol": "building"
       }
     },
     {
@@ -151,7 +167,9 @@
         "Project Name": "South Block Barbecue & Brewing Co.",
         "Status": "DP placed",
         "Description": "roofing",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#E57373",
+        "marker-symbol": "building"
       }
     },
     {
@@ -168,7 +186,9 @@
         "Project Name": "greenbowl",
         "Status": "Bid submitted",
         "Description": "cladding",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#1976D2",
+        "marker-symbol": "building"
       }
     },
     {
@@ -185,7 +205,9 @@
         "Project Name": "earth",
         "Status": "Lose",
         "Description": "service",
-        "Updated At": ""
+        "Updated At": "",
+        "marker-color": "#D32F2F",
+        "marker-symbol": "building"
       }
     }
   ]
