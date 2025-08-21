@@ -1,58 +1,260 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <title>United Projects Map</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    html, body, #map { height: 100%; margin: 0; padding: 0; }
-  </style>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-</head>
-<body>
-  <div id="map"></div>
-  <script>
-    const map = L.map('map').setView([51.0447, -114.0719], 10);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-    fetch('united-projects.geojson')
-      .then(response => response.json())
-      .then(data => {
-        const statusColors = {
-          "Won": "green",
-          "Lose": "red",
-          "Estimating": "orange",
-          "Bid submitted": "blue",
-          "DP placed": "pink",
-          "": "gray"
-        };
-
-        L.geoJSON(data, {
-          pointToLayer: function (feature, latlng) {
-            const color = statusColors[feature.properties.Status] || "black";
-            return L.circleMarker(latlng, {
-              radius: 6,
-              fillColor: color,
-              color: "#000",
-              weight: 1,
-              opacity: 1,
-              fillOpacity: 0.8
-            });
-          },
-          onEachFeature: function (feature, layer) {
-            const p = feature.properties;
-            layer.bindPopup(
-              `<b>${p["Project Name"]}</b><br/>
-               ID: ${p["Project ID"]}<br/>
-               Status: ${p["Status"]}<br/>
-               Description: ${p["Description"]}<br/>
-               Updated: ${p["Updated At"]}`
-            );
-          }
-        }).addTo(map);
+  <head>
+    <title>United Projects Map</title>
+    <meta charset="utf-8" />
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfX45EKkc_I2jIGHH67iv4H-jOkbgIfNA"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: { lat: 51.0447, lng: -114.0719 }
       });
-  </script>
-</body>
+
+      const geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.45990900",
+          "51.16198900"
+        ]
+      },
+      "properties": {
+        "Project ID": "F1489",
+        "Project Name": "greenland",
+        "Status": "Lose",
+        "Description": "roofing",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.47219130",
+          "51.15890970"
+        ]
+      },
+      "properties": {
+        "Project ID": "F1598",
+        "Project Name": "iceland",
+        "Status": "Won",
+        "Description": "gypcrete",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.47534150",
+          "51.16045200"
+        ]
+      },
+      "properties": {
+        "Project ID": "F1614",
+        "Project Name": "monowheel",
+        "Status": "DP placed",
+        "Description": "cladding",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.04086900",
+          "51.02463900"
+        ]
+      },
+      "properties": {
+        "Project ID": "F000",
+        "Project Name": "base",
+        "Status": "Bid submitted",
+        "Description": "traffic coating",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.05371600",
+          "51.02121260"
+        ]
+      },
+      "properties": {
+        "Project ID": "F900",
+        "Project Name": "Cabin",
+        "Status": "Won",
+        "Description": "waterproofing",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.05180480",
+          "51.02284000"
+        ]
+      },
+      "properties": {
+        "Project ID": "F700",
+        "Project Name": "Peak",
+        "Status": "Estimating",
+        "Description": "service",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.06299900",
+          "51.01262800"
+        ]
+      },
+      "properties": {
+        "Project ID": "f157",
+        "Project Name": "Annex Ale Project",
+        "Status": "Estimating",
+        "Description": "roofing",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.06299900",
+          "51.01262800"
+        ]
+      },
+      "properties": {
+        "Project ID": "f434",
+        "Project Name": "The Establishment Brewing Company",
+        "Status": "Won",
+        "Description": "cladding",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.07177740",
+          "51.03075090"
+        ]
+      },
+      "properties": {
+        "Project ID": "t45",
+        "Project Name": "South Block Barbecue & Brewing Co.",
+        "Status": "DP placed",
+        "Description": "roofing",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.06274400",
+          "51.03228500"
+        ]
+      },
+      "properties": {
+        "Project ID": "k78",
+        "Project Name": "greenbowl",
+        "Status": "Bid submitted",
+        "Description": "cladding",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.05515720",
+          "51.02718090"
+        ]
+      },
+      "properties": {
+        "Project ID": "o98",
+        "Project Name": "earth",
+        "Status": "Lose",
+        "Description": "service",
+        "Updated At": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-114.03997800",
+          "50.98948900"
+        ]
+      },
+      "properties": {
+        "Project ID": "y978",
+        "Project Name": "test1",
+        "Status": "Estimating",
+        "Description": "roofing",
+        "Updated At": ""
+      }
+    }
+  ]
+};
+
+      geojson.features.forEach(feature => {
+        const coords = feature.geometry.coordinates;
+        const props = feature.properties;
+
+        const marker = new google.maps.Marker({
+          position: {
+            lat: parseFloat(coords[1]),
+            lng: parseFloat(coords[0])
+          },
+          map,
+          title: props["Project Name"]
+        });
+
+        const info = new google.maps.InfoWindow({
+          content: "<b>" + props["Project Name"] + "</b><br>" +
+                   "Status: " + props["Status"] + "<br>" +
+                   "Scope: " + props["Description"] + "<br>" +
+                   "Updated: " + props["Updated At"]
+        });
+
+        marker.addListener("click", () => {
+          info.open(map, marker);
+        });
+      });
+    </script>
+  </body>
 </html>
